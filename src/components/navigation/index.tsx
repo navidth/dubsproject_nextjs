@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 const Navigation = async () => {
   const categoryData = await getCategory();
   return (
-    <div className="bg-light shadownavbar w-100 w3-animate-opacity w3-container">
+    <div className="bg-light shadownavbar">
       <div className="justify-content-center align-items-center">
         <div className="d-flex justify-content-between navbartop">
           <div className=""></div>

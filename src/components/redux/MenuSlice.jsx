@@ -20,8 +20,9 @@ const menuSlice = createSlice({
     clickAction: (state, action) => {
       state[action.payload] = !state[action.payload];
     },
+
   },
 })
 
-export const {toggleMenu, clickAction} = menuSlice.actions
+export const {toggleMenu, clickAction,hoverAction} = menuSlice.actions
 export default menuSlice.reducer

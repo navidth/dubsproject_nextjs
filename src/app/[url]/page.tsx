@@ -1,4 +1,3 @@
-import { Products } from "@/app/lib/interface/type";
 import CardProduct from "../../components/CardProduct";
 import { getCategory, getProduct } from "@/api/GetData";
 import Header from "@/components/Header";
@@ -10,9 +9,7 @@ import ResualtCat from "@/components/ResualtCat";
 async function ProductShop({ params }: { params: { url: string } }) {
   const res = await getCategory();
   const resualtCat = res.find((cat) => cat.url === params.url);
-  const resualtCatItems = resualtCat?.subitems || [];
-  const product: any = await getProduct();
-  let dataUrl = product.filter((i: Products) => i.category.url === params.url);
+
 
   return (
     <main className="mt-5 d-flex justify-content-center container-lg">
@@ -32,7 +29,7 @@ async function ProductShop({ params }: { params: { url: string } }) {
           <Header pageFather={resualtCat.name} pageChild={resualtCat.name} />
         )}
         <Sortby />
-          <CardProduct Item={dataUrl} />
+          <CardProduct params={params} />
       </section>
     </main>
   );

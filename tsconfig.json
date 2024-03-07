@@ -32,6 +32,6 @@
     "src/components/navigation/index.tsx",
     "src/app/[url]/butterfly.js",
     "src/api/GetData.tsx"
-  ],
+, "src/components/CardProduct.jsx", "src/components/CardSimilar.tsx", "src/components/DetailedProduct.jsx"  ],
   "exclude": ["node_modules"]
 }

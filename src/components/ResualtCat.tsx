@@ -14,8 +14,6 @@ function ResualtCat({
   names: any[];
 }) 
 {
-  const path = usePathname()
-  console.log(path)
   return (
     <div className="card bg-light mt-4 ">
       <div className="bg-body-secondary">

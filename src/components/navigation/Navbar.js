@@ -2,7 +2,7 @@
 import { VscChromeClose } from "react-icons/vsc";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMenu, clickAction } from "../redux/MenuSlice";
+import { toggleMenu, clickAction,hoverAction } from "../redux/MenuSlice";
 import Link from "next/link";
 
 const Navbar = ({ data }) => {
@@ -28,12 +28,13 @@ const Navbar = ({ data }) => {
   const handleItemsMenu = (fieldName) => {
     dispatch(clickAction(fieldName));
   };
-  const handleTouchCancel = (fieldName) => {
-    dispatch(clickAction(!fieldName));
-  };
+  const handleCancel = (filedName)=>{
+    dispatch(clickAction(filedName = false))
+    }
+
   return (
-    <nav className="navbar navbar-expand-sm">
-      <div className="container-xxl">
+    <nav className="navbar navbar-expand-lg">
+      <div className="container-lg">
         <button
           className="navbar-toggler mt-3"
           type="button"
@@ -55,7 +56,7 @@ const Navbar = ({ data }) => {
             >
               <VscChromeClose
                 size={"25px"}
-                className="d-block d-sm-none btn-outline-dark"
+                className="d-block d-lg-none btn-outline-dark"
               ></VscChromeClose>
             </button>
 
@@ -75,7 +76,7 @@ const Navbar = ({ data }) => {
                       {item.name}
                     </Link>
                     <button
-                      className={`btn d-block d-sm-none  ms-2 ${
+                      className={`btn d-block d-lg-none  ms-2 ${
                         blades ? "opendrop" : "closedrop"
                       }`}
                       type="button"
@@ -102,7 +103,7 @@ const Navbar = ({ data }) => {
                               className="dropdown-item drop-item pe-4"
                               href={`/${item.url}/${sub.urlItems}`}
                               onClick={() => {
-                                handleItemsMenu("bladesMenu");
+                                handleCancel("bladesMenu");
                               }}
                             >
                               {sub.name}
@@ -125,7 +126,7 @@ const Navbar = ({ data }) => {
                       {item.name}
                     </Link>
                     <button
-                      className={`btn d-block d-sm-none  ms-2 ${
+                      className={`btn d-block d-lg-none  ms-2 ${
                         rubbers ? "opendrop" : "closedrop"
                       }`}
                       type="button"
@@ -152,7 +153,7 @@ const Navbar = ({ data }) => {
                               className="dropdown-item drop-item pe-4"
                               href={`/${item.url}/${sub.urlItems}`}
                               onClick={() => {
-                                handleItemsMenu("rubbersMenu");
+                                handleCancel("rubbersMenu");
                               }}
                             >
                               {sub.name}
@@ -177,7 +178,7 @@ const Navbar = ({ data }) => {
                       {item.name}
                     </Link>
                     <button
-                      className={`btn d-block d-sm-none  ms-2 ${
+                      className={`btn d-block d-lg-none  ms-2 ${
                         table ? "opendrop" : "closedrop"
                       }`}
                       type="button"
@@ -204,7 +205,7 @@ const Navbar = ({ data }) => {
                               className="dropdown-item drop-item pe-4"
                               href={`/${item.url}/${sub.urlItems}`}
                               onClick={() => {
-                                handleItemsMenu("tableMenu");
+                                handleCancel("tableMenu");
                               }}
                             >
                               {sub.name}
@@ -226,7 +227,7 @@ const Navbar = ({ data }) => {
                       {item.name}
                     </Link>
                     <button
-                      className={`btn d-block d-sm-none  ms-2 ${
+                      className={`btn d-block d-lg-none  ms-2 ${
                         clothings ? "opendrop" : "closedrop"
                       }`}
                       type="button"
@@ -253,7 +254,7 @@ const Navbar = ({ data }) => {
                               className="dropdown-item drop-item pe-4"
                               href={`/${item.url}/${sub.urlItems}`}
                               onClick={() => {
-                                handleItemsMenu("clothingsMenu");
+                                handleCancel("clothingsMenu");
                               }}
                             >
                               {sub.name}

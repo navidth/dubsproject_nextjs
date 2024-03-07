@@ -16,10 +16,7 @@ async function PageItemsMenu({params}:{params:{urlItems:string, url:string}}) {
  const resualtCatItems = resualtCat?.subitems || []
  const category:any = resualtCatItems.find((sub)=>sub.urlItems === params.urlItems)
 
- const product:any = await getProduct()
- let dataUrl = product.filter((i:any)=>{
-  return i.category.url === params.url && i.category.subitems && i.category.subitems.some((subitem:any) => subitem.urlItems === params.urlItems)
- })
+ 
 
  return (
   <main className="mt-5 d-flex justify-content-center container-lg">
@@ -37,7 +34,7 @@ async function PageItemsMenu({params}:{params:{urlItems:string, url:string}}) {
       <section className='card-prudoct me-sm-5 me-0 rounded mb-5'>
     {resualtCat && <Header  pageFather ={resualtCat.name} pageChild={category?.name}/>}
     <Sortby/>
-    <CardProduct Item={dataUrl}/>
+    <CardProduct params={params} />
   </section>
     </main>
       

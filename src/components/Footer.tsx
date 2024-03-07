@@ -10,7 +10,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <footer className="footer px-4 bg-dark text-light shadownavbar w3-animate-opacity">
+    <footer className="footer px-4 bg-dark text-light">
       <div className="w-full d-flex align-item-flex-start flex-column flex-md-row py-3 justify-content-around a-line">
         {/* ......................راه های ارتباطی ............... */}
         <div className="d-flex flex-column mx-4 mx-md-0">
