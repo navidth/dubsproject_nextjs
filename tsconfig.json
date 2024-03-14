@@ -26,12 +26,15 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/components/navigation/Navbar.js",
-    "src/components/CartProduct.js",
-    "src/components/navigation/LoginCart.js",
+    "src/components/navigation/Navbar.jsx",
+    "src/components/CartProduct.jsx",
+    "src/components/navigation/LoginCart.jsx",
     "src/components/navigation/index.tsx",
     "src/app/[url]/butterfly.js",
-    "src/api/GetData.tsx"
-, "src/components/CardProduct.jsx", "src/components/CardSimilar.tsx", "src/components/DetailedProduct.jsx"  ],
+    "src/Data/GetData.tsx",
+    "src/components/CardProduct.jsx",
+    "src/components/CardSimilar.tsx",
+    "src/components/DetailedProduct.jsx"
+  ],
   "exclude": ["node_modules"]
 }

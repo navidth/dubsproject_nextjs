@@ -8,29 +8,33 @@ import {
 } from "react-icons/bs";
 import { MdAddShoppingCart } from "react-icons/md";
 import { LuPlus, LuMinus } from "react-icons/lu";
+import { RiDeleteBin2Fill } from "react-icons/ri";
 import ModalImage from "react-modal-image";
 import { CartContex } from "@/context/CartContex";
 import { useDispatch, useSelector } from "react-redux";
 import { Products } from "@/app/lib/interface/type";
 import DesceriptionsProduct from "./DesceriptionsProduct";
 import CardSimilar from "./CardSimilar";
-import { getDataProducts } from "./redux/productSlice";
+import { addToCart, getDataProducts, removeToCart } from "./redux/productSlice";
 
 function DetailedProduct({ params }) {
-  const { posts } = useSelector((state) => state.products);
+  const { posts,products } = useSelector((state) => state.products);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getDataProducts());
-  },[]);
+  }, []);
 
-  let data = posts.filter((i) => i.title.replace(/\s/g, "-") === params.title);
-  let similar = posts.map((i) => i.category.url);
+  let data = posts.filter(
+    (i) => i.title.replace(/[&:]/g, "").replace(/\s/g, "-") === params.title
+  );
+  let similar = posts.filter((i) => i.category.url === data?.[0]?.category.url);
 
-  const cart = useContext(CartContex);
   const [bookMarks, setBookmarks] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [showMassege, setShowMassege] = useState(false);
+  const [showQuantity, setShowQuantity] = useState(false);
+
   const detailBlades = [
     { attr: "کشور", value: "ژاپن" },
     { attr: "سرعت", value: "78" },
@@ -57,6 +61,31 @@ function DetailedProduct({ params }) {
       setShowMassege(false);
     }, 2000);
   };
+
+  const quanterHandler = (e, items, op) => {
+    setShowQuantity(true);
+    const parentElement =
+      e.currentTarget.parentElement.parentElement.parentElement.parentElement;
+
+      const newData = {
+        name: parentElement.querySelector(".brandName").innerText,
+        id: items.id,
+        operation: op,
+        quantity: Number(parentElement.querySelector(".values").value),
+        price: items.price,
+        image: items.images[0],
+        IsYetInCart: true,
+        totalPirce: Number(items.price) * Number(parentElement.querySelector(".values").value),
+      };
+      dispatch(addToCart(newData));
+      console.log(newData);
+  };
+
+  const removeHandler = (items) => {
+    setShowQuantity(false);
+    dispatch(removeToCart(items));
+  };
+
   return (
     <div className="">
       <div className="detailed-items my-5">
@@ -93,7 +122,7 @@ function DetailedProduct({ params }) {
             <div className="body-product mt-3">
               <section>
                 <div className="d-flex justify-content-between align-items-center">
-                  <h4 className="fw-700">{items.title}</h4>
+                  <h4 className="fw-700 brandName">{items.title}</h4>
                   <div className=" d-flex justify-content-center align-items-center">
                     <BsShare
                       id="dashbord-svg"
@@ -164,22 +193,24 @@ function DetailedProduct({ params }) {
                   <label htmlFor="brand" className="fw-bold mt-2 ms-2">
                     برند :{" "}
                   </label>
-                  {items.category.subitems.map((i, index) => (
-                    <span
-                      id="brand"
-                      key={index}
-                      className=" letter-spacing text-muted"
-                    >
-                      {i.urlItems}
-                    </span>
-                  ))}
+                  {items.category.subitems
+                    ? items.category.subitems.map((i, index) => (
+                        <span
+                          id="brand"
+                          key={index}
+                          className=" letter-spacing text-muted"
+                        >
+                          {i.urlItems}
+                        </span>
+                      ))
+                    : null}
                 </div>
               </section>
 
               <section>
                 <ul className="mt-2 p-0 mx-3">
                   {detailBlades.map((detail, index) => (
-                    <li className="py-1" key={index}>
+                    <li className="py-1 detailProduct" key={index}>
                       <div className="inform">
                         <span className="fw-bold letter-spacing">
                           {detail.attr} :{" "}
@@ -196,21 +227,79 @@ function DetailedProduct({ params }) {
 
               <section className="pb-4">
                 <div className="priceSection d-flex align-items-baseline text-danger">
-                  <h1 className="px-2 letter-spacing ms-2 ">
+                  <h1 className="px-2 letter-spacing ms-2 price">
                     {numberWithCommas(items.price)}00000
                   </h1>{" "}
                   <h6 className="letter-spacing">تومان </h6>
                 </div>
-                <div className="button-price mx-3">
-                  <button
-                    className="btn btn-danger rounded-5 p-3"
-                    type="button"
-                    onClick={() => cart.addItemCart(items.title)}
+
+                {showQuantity ? (
+                  <ul
+                    className={`quantity align-items-center justify-content-end ${
+                      showQuantity ? "animationOpcL d-flex" : "d-none"
+                    }`}
                   >
-                    <MdAddShoppingCart size={"24px"}></MdAddShoppingCart>
-                    <span className="mx-3">افزودن به سبد خرید</span>
-                  </button>
-                </div>
+                    <li>
+                      <button
+                        className="add border-0 border-2"
+                        onClick={(e) => quanterHandler(e, items, 1)}>
+                        <LuPlus size={"25px"} />
+                      </button>
+                    </li>
+                    <li className=" mx-3">
+                      <p className=" my-auto fw-bold fs-5">
+                        {products.find((product) => product.id === items.id)
+                          ?.quantity || 0}
+                      </p>
+                      <input
+                        type="text"
+                        className="values  visually-hidden hidden"
+                        defaultValue="1"
+                      />
+                    </li>
+                    <li>
+                      {" "}
+                      <button
+                        className={`minus border-0 ${
+                          products.find((product) => product.id === items.id)
+                            ?.IsYetInCart
+                            ? ""
+                            : "pointer-events-none"
+                        }`}
+                        onClick={(e) => quanterHandler(e, items, -1)}
+                      >
+                        <LuMinus size={"25px"} />
+                      </button>
+                    </li>
+                    <li>
+                      {" "}
+                      <RiDeleteBin2Fill
+                        size={"29px"}
+                        className="delete text-danger mx-3"
+                        data-tooltip-id="my-tooltip"
+                        data-tooltip-content="حذف از سبد خرید"
+                        onClick={() => {
+                          removeHandler(items);
+                        }}
+                      />
+                    </li>
+                  </ul>
+                ) : (
+                  <div
+                    className={`button-price mx-3 ${
+                      showQuantity ? "d-none" : "d-block"
+                    }`}
+                  >
+                    <button
+                      className="btn btn-danger rounded-5 p-3"
+                      type="button"
+                      onClick={(e) => quanterHandler(e, items, 1)}
+                    >
+                      <MdAddShoppingCart size={"24px"}></MdAddShoppingCart>
+                      <span className="mx-3">افزودن به سبد خرید</span>
+                    </button>
+                  </div>
+                )}
               </section>
 
               <section className="my-1 border-0">
@@ -226,14 +315,12 @@ function DetailedProduct({ params }) {
         ))}
 
         <div className="description-similar my-5">
-
           {/* // desceriptions...........................  */}
           <DesceriptionsProduct data={data} />
 
           {/* Similar Products............................ */}
-          
-          <CardSimilar data={posts} similar={similar} />
-        
+
+          <CardSimilar similar={similar} />
         </div>
       </div>
     </div>

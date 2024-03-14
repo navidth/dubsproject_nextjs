@@ -69,7 +69,7 @@ a {
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
-li::marker {
+.detailProduct::marker {
   color: var(--bs-danger);
   opacity: 0.8;
 }
@@ -96,12 +96,7 @@ li::marker {
   transition: transform 0.3s;
   transform: translateY(-2px);
 }
-.count {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-}
+
 .form {
   width: 140px;
   border: 1px solid black;
@@ -223,8 +218,67 @@ li::marker {
   height: 65px;
   font-size: 14px;
 }
-.price-prodcuts-similar{
+.price-prodcuts-similar {
   text-align: center;
+}
+.pointer-events-none{
+  pointer-events: none;
+}
+.quantity{
+  list-style-type: none;
+  padding-left: 0px !important;
+}
+.quantity .add,
+.minus {
+  background-color: #ced4da3b;
+  color: var(--bs-danger);
+  box-shadow: 1px 1px 5px gray;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.delete {
+  cursor: pointer;
+  border-radius: 50%;
+}
+.delete:hover {
+  transform: translateY(-3px);
+  transition: transform 0.5s ease;
+}
+.add:hover,
+.minus:hover {
+  box-shadow: 5px 5px 13px gray;
+  transition: box-shadow 0.5s ease;
+}
+.quantity li:nth-child(2){
+  width: 100%;
+}
+.quantity li p {
+  outline: 0;
+  border:1px solid #ced4da !important;
+  width: 100%;
+  border-radius: 2rem !important;
+  text-align: center;
+  box-shadow: 1px 1px 1px rgb(170, 169, 169);
+  background-color: #ced4da3b;
+  padding: 0px 30px;
+}
+.animationOpcL {
+  animation: linear 1 alternate;
+  animation-name: run;
+  animation-duration: 0.8s;
+}
+
+@keyframes run {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 /* media............................................................................................................ */
 
@@ -303,7 +357,13 @@ li::marker {
     align-items: center;
     justify-content: space-between;
     margin: 20px 20px;
-}
+  }
+  .quantity{
+    justify-content: center !important;
+    margin: 0px -20px !important;
+    padding-left: 0px !important;
+    padding-right: 20px;
+  }
 }
 
 @media screen and (max-width: 619px) {

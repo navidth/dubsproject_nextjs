@@ -3,15 +3,15 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import {z} from "zod";
-import { FormDataSchemaLogin} from "@/app/lib/shema";
-import { addEntry} from "@/app/_action";
+import { z } from "zod";
+import { FormDataSchemaLogin } from "@/app/lib/shema";
+import { addEntry } from "@/app/lib/actions/_action";
 import { useRouter } from "next/navigation";
 
 type Inputs = z.infer<typeof FormDataSchemaLogin>;
 
 function Register() {
-  const router= useRouter()
+  const router = useRouter();
 
   const {
     register,
@@ -21,8 +21,8 @@ function Register() {
   } = useForm<Inputs>({
     resolver: zodResolver(FormDataSchemaLogin),
   });
-// Login.............................................
-  const processForm:SubmitHandler<Inputs> = async (data: Inputs) => {
+  // Login.............................................
+  const processForm: SubmitHandler<Inputs> = async (data: Inputs) => {
     const resualt = await addEntry(data);
     if (!resualt) {
       console.log("errorssssssssssssss");
@@ -39,26 +39,25 @@ function Register() {
     <div className="login-page  mx-auto my-5 pt-2 pb-3">
       <div className=" my-5 form-page">
         <div className="rounded-4  bg-white form-page-div1">
-
           <div className="form-content rounded-4 bg-white mt-5">
             <div
               className="login-content border border-danger-subtile "
               id="login-content"
             >
-            <div className="header-form">
-            <button
-              type="button"
-              id="login"
-              className="p-3 w-100 btn-outline-danger"
-              style={{
-                cursor:'auto !important',
-                background:"#dc3545",
-                color:"#f8f9fa",
-              }}
-            >
-              <span className="fs-3">ورود</span>
-            </button>
-          </div>
+              <div className="header-form">
+                <button
+                  type="button"
+                  id="login"
+                  className="p-3 w-100 btn-outline-danger"
+                  style={{
+                    cursor: "auto !important",
+                    background: "#dc3545",
+                    color: "#f8f9fa",
+                  }}
+                >
+                  <span className="fs-3">ورود</span>
+                </button>
+              </div>
               <form onSubmit={handleSubmit(processForm)} className="my-4 mx-3">
                 <label htmlFor="phone" className="form-label mt-3">
                   شماره تلفن :
@@ -103,12 +102,18 @@ function Register() {
                 <h3>عضویت در سایت </h3>
               </div>
               <div className=" text-muted text-center w-75">
-               <p> با ایجاد یک حساب کاربری میتوانید سریع تر بررسی کنید، خرید کنید، سفارش هارا بررسی و پیگیری کنید و موارد دیگر
-              </p>
-              <button className="btn mt-3 btn-danger mb-3" onClick={()=> router.push('/register')}>
-                ساخت اکانت جدید
-              </button>
-               </div>
+                <p>
+                  {" "}
+                  با ایجاد یک حساب کاربری میتوانید سریع تر بررسی کنید، خرید
+                  کنید، سفارش هارا بررسی و پیگیری کنید و موارد دیگر
+                </p>
+                <button
+                  className="btn mt-3 btn-danger mb-3"
+                  onClick={() => router.push("/register")}
+                >
+                  ساخت اکانت جدید
+                </button>
+              </div>
             </div>
           </div>
         </div>

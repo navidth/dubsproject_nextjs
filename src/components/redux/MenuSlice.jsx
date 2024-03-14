@@ -20,7 +20,6 @@ const menuSlice = createSlice({
     clickAction: (state, action) => {
       state[action.payload] = !state[action.payload];
     },
-
   },
 })
 

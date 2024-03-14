@@ -1,5 +1,4 @@
 "use client";
-import { getProduct } from "@/api/GetData";
 import DetailedProduct from "@/components/DetailedProduct";
 import "../../../../styles/detailed.css";
 import { CartProvaider } from "@/context/CartContex";

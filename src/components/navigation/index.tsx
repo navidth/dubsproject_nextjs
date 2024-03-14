@@ -1,7 +1,7 @@
 import { CartContex, CartProvaider } from "@/context/CartContex";
 import BrandLogo from "./Brand";
 import LoginCart from "./LoginCart";
-import { getCategory, getProduct } from "@/api/GetData";
+import { getCategory, getProduct } from "@/Data/GetData";
 import Navbar from "./Navbar";
 
 const Navigation = async () => {

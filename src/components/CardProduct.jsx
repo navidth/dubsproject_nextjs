@@ -51,7 +51,7 @@ let products =[]
             <Link
               href={`/${product.category.url}/${
                 product.category.subitems?.[0]?.urlItems || product.id
-              }/${product.title.replace(/\s/g, "-")}`}
+              }/${product.title.replace(/[&:]/g, "").replace(/\s/g, "-")}`}
               className="productcard rounded-3 bg-white "
             >
               <div className="img-card rounded-2 ">

@@ -3,8 +3,6 @@ import { Products } from "@/app/lib/interface/type";
 import React, { useState } from "react";
 
 function DesceriptionsPreduct({ data }: { data: Products[]}) {
-  console.log(data);
-  
   const [readMe, setReadmeBtn] = useState(false);
   const readMeBtn = () => {
     setReadmeBtn(!readMe);
@@ -16,17 +14,18 @@ function DesceriptionsPreduct({ data }: { data: Products[]}) {
         <h3>توضیحات</h3>
       </section>
       <section className="header-desceription px-3 py-3">
-        <h2> معرفی {data[0].title}</h2>
+        <h2> معرفی {data?.[0]?.title}
+        </h2>
       </section>
       <section>
         {readMe && (
           <div>
             <p id="text" className="p-desceriptions text-muted">
-              {data[0].description}
+              {data?.[0]?.description}
             </p>
           </div>
         )}
-        {data[0].description && data[0].description.length > 200 ? (
+        {data?.[0]?.description && data[0].description.length > 200 ? (
           <button
             type="button"
             onClick={readMeBtn}
@@ -36,7 +35,7 @@ function DesceriptionsPreduct({ data }: { data: Products[]}) {
           </button>
         ) : (
           <p id="text" className="p-desceriptions text-muted">
-            {data[0].description}
+            {data?.[0]?.description}
           </p>
         )}
       </section>

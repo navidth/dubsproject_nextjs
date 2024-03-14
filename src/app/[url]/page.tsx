@@ -1,5 +1,5 @@
 import CardProduct from "../../components/CardProduct";
-import { getCategory, getProduct } from "@/api/GetData";
+import { getCategory, getProduct } from "@/Data/GetData";
 import Header from "@/components/Header";
 import Sortby from "@/components/Sortby";
 import Moshavere from "@/components/Moshavere";
@@ -9,7 +9,6 @@ import ResualtCat from "@/components/ResualtCat";
 async function ProductShop({ params }: { params: { url: string } }) {
   const res = await getCategory();
   const resualtCat = res.find((cat) => cat.url === params.url);
-
 
   return (
     <main className="mt-5 d-flex justify-content-center container-lg">
@@ -29,7 +28,7 @@ async function ProductShop({ params }: { params: { url: string } }) {
           <Header pageFather={resualtCat.name} pageChild={resualtCat.name} />
         )}
         <Sortby />
-          <CardProduct params={params} />
+        <CardProduct params={params} />
       </section>
     </main>
   );

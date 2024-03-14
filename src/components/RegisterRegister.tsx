@@ -2,7 +2,7 @@
 import { z } from "zod";
 import { FormDataShemaRegister } from "@/app/lib/shema";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { addEntryRegister } from "@/app/_action";
+import { addEntryRegister } from "@/app/lib/actions/_action";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 type InputsRegister = z.infer<typeof FormDataShemaRegister>;
@@ -20,12 +20,12 @@ function Register() {
     data: InputsRegister
   ) => {
     const resualt = await addEntryRegister(data);
+
     if (!resualt) {
       console.log("errorssssssssssssss");
       return;
     }
     if (resualt.success) {
-      console.log(resualt.success);
       return;
     }
     reset();

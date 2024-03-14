@@ -1,11 +1,9 @@
 "use client";
-import { getProduct } from "@/api/GetData";
 import { Products } from "@/app/lib/interface/type";
 import Image from "next/image";
 import Link from "next/link";
 
-function CardSimilar({ data, similar }: { data: Products[]; similar: string }) {
-  const similarData = data.filter((sim) => sim.category.url === similar[0]);
+function CardSimilar({similar }: {similar: Products[] }) {
 
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -18,7 +16,7 @@ function CardSimilar({ data, similar }: { data: Products[]; similar: string }) {
       </section>
       <div className="px-5 py-4">
         <ul className="list-similar-product">
-          {similarData.map((item, index) => {
+          {similar.map((item, index) => {
             return (
               <li key={index} className="list-group-item ">
                 <div className="product-similar border">
