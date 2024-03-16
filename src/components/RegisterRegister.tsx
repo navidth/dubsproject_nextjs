@@ -4,6 +4,7 @@ import { FormDataShemaRegister } from "@/app/lib/shema";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { addEntryRegister } from "@/app/lib/actions/_action";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { redirect, useRouter } from "next/navigation";
 
 type InputsRegister = z.infer<typeof FormDataShemaRegister>;
 
@@ -16,20 +17,21 @@ function Register() {
   } = useForm<InputsRegister>({
     resolver: zodResolver(FormDataShemaRegister),
   });
+  const router = useRouter()
+  const redirect =()=>{
+    router.push('/')
+  }
   const onRegister: SubmitHandler<InputsRegister> = async (
     data: InputsRegister
   ) => {
     const resualt = await addEntryRegister(data);
-
     if (!resualt) {
-      console.log("errorssssssssssssss");
       return;
     }
     if (resualt.success) {
-      return;
+      return redirect()
     }
-    reset();
-  };
+};
 
   return (
     <div className="register-page   mx-auto my-3">
@@ -53,7 +55,6 @@ function Register() {
                 </button>
               </div>
               <form
-                action=""
                 method="post"
                 onSubmit={handleSubmit(onRegister)}
                 className="my-4 mx-3 d-flex flex-column flex-wrap form"
@@ -106,7 +107,7 @@ function Register() {
                 <button
                   type="submit"
                   className=" mt-2 mx-auto d-block btn rounded-2 btn-danger"
-                >
+                  onClick={redirect}>
                   عضویت
                 </button>
               </form>

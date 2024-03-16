@@ -1,5 +1,5 @@
 import CardProduct from "../../components/CardProduct";
-import { getCategory, getProduct } from "@/Data/GetData";
+import { getCategory } from "@/Data/GetData";
 import Header from "@/components/Header";
 import Sortby from "@/components/Sortby";
 import Moshavere from "@/components/Moshavere";
