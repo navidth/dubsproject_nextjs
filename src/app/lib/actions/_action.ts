@@ -23,9 +23,7 @@ export async function addEntryRegister(data: InputsRegister) {
     const { nameUser, phoneUsers, password } = resualt.data;
     createUser(nameUser, phoneUsers, password);
   }
-  if (resualt.error) {
-    return { success: false, data: resualt.error.format() };
-  }
+
 }
 
 async function createUser(name: String, phone: String, password: String) {

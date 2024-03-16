@@ -1,5 +1,4 @@
-import { getCategory, getProduct } from "@/Data/GetData";
-import { Category } from "@/app/lib/interface/type";
+import { getCategory} from "@/Data/GetData";
 import CardProduct from "@/components/CardProduct";
 import Header from "@/components/Header";
 import Moshavere from "@/components/Moshavere";
