@@ -25,13 +25,13 @@ function Register() {
     data: InputsRegister
   ) => {
     const resualt = await addEntryRegister(data);
-    if (!resualt) {
-      reset()
-      return;
-    }
-    if (resualt.success) {
-      return redirect()
-    }
+    // if (!resualt) {
+    //   reset()
+    //   return;
+    // }
+    // if (resualt.success) {
+    //   return redirect()
+    // }
 };
 
   return (
