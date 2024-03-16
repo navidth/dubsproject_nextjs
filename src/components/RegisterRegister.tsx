@@ -26,6 +26,7 @@ function Register() {
   ) => {
     const resualt = await addEntryRegister(data);
     if (!resualt) {
+      reset()
       return;
     }
     if (resualt.success) {
