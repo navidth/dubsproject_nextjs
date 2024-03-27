@@ -11,7 +11,6 @@ const CartProduct = (props) => {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
   const { products } = useSelector((state) => state.products);
-  console.log(products);
   const dispatch = useDispatch();
 
   const quanterHandler = (e, product, op) => {
@@ -28,7 +27,6 @@ const CartProduct = (props) => {
         totalPirce: Number(product.price) * Number(parentElement.querySelector(".values").value),
       };
       dispatch(addToCart(newData));
-      console.log(newData);
   };
 
   return (

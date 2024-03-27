@@ -1,8 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  basePath: "/dubsproject_nextjs",
-  output: "export",
-  reactStrictMode: true,
-};
+const nextConfig = {};
 
 export default nextConfig;

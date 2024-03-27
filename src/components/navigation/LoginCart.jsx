@@ -2,9 +2,9 @@
 
 import { Tooltip } from "react-tooltip";
 import { BsPersonCircle, BsCart3 } from "react-icons/bs";
-import { BiSearchAlt2 } from "react-icons/bi";
-import { useRef, useState, useContext } from "react";
-import { AiOutlineClose, AiOutlineArrowLeft } from "react-icons/ai";
+import { BiSearchAlt2,BiLogInCircle } from "react-icons/bi";
+import { useRef, useState} from "react";
+import { AiOutlineClose} from "react-icons/ai";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Link from "next/link";
@@ -20,7 +20,6 @@ function LoginCart() {
     (sum, product) => sum + product.quantity,
     0
   );
-  console.log(productCount);
   //func for searchbox................................................
   const [search, setSearch] = useState("");
   const searchBoxRef = useRef(null);
@@ -121,10 +120,10 @@ function LoginCart() {
         data-tooltip-id="my-tooltip"
         className=" tt btn "
       >
-        <BsPersonCircle
-          size={"25px"}
+        <BiLogInCircle
+          size={"27px"}
           className="icons icons-login"
-        ></BsPersonCircle>
+        ></BiLogInCircle>
       </Link>
       <div className="overlay" id="searchbox" ref={searchBoxRef}>
         <button type="button" className="btn btnclose" onClick={closeSearch}>

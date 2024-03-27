@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext, useEffect } from "react";
+import{ useState,useEffect } from "react";
 import {
   BsBookmark,
   BsBookmarkFill,
@@ -10,9 +10,7 @@ import { MdAddShoppingCart } from "react-icons/md";
 import { LuPlus, LuMinus } from "react-icons/lu";
 import { RiDeleteBin2Fill } from "react-icons/ri";
 import ModalImage from "react-modal-image";
-import { CartContex } from "@/context/CartContex";
 import { useDispatch, useSelector } from "react-redux";
-import { Products } from "@/app/lib/interface/type";
 import DesceriptionsProduct from "./DesceriptionsProduct";
 import CardSimilar from "./CardSimilar";
 import { addToCart, getDataProducts, removeToCart } from "./redux/productSlice";
@@ -78,7 +76,6 @@ function DetailedProduct({ params }) {
         totalPirce: Number(items.price) * Number(parentElement.querySelector(".values").value),
       };
       dispatch(addToCart(newData));
-      console.log(newData);
   };
 
   const removeHandler = (items) => {
