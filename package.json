@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "server": "json-server --watch ./src/Data/productDubs.json --port 4000"
+    "server": "json-server --watch ./src/Data/productDubs.json --port 3000"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
