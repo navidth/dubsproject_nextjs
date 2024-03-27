@@ -1,7 +1,6 @@
 "use client";
 import DetailedProduct from "@/components/DetailedProduct";
 import "../../../../styles/detailed.css";
-import { CartProvaider } from "@/context/CartContex";
 import DesceriptionsProduct from "@/components/DesceriptionsProduct";
 import CardSimilar from "@/components/CardSimilar";
 import { Products } from "@/app/lib/interface/type";
