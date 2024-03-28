@@ -2,7 +2,7 @@ import { Category} from "@/app/lib/interface/type";
 
 
 export const getCategory = async () => {
-  const res = await fetch("http://localhost:4000/category", {
+  const res = await fetch("https://data-json-six.vercel.app/category", {
     cache: "no-store",
   });
   if (!res.ok) {
